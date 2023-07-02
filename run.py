@@ -21,5 +21,15 @@ def print_board(board, name):
         row_number += 1
 
 player_board = create_board(6)
-create_ships(3, "player", 6, player_board)
+create_ships(3,"player", 6,player_board)
 print_board(player_board, "Gray")
+
+def make_guess(board):
+    x = int(input("Please enter a row: \n"))
+    y = int(input("Please enter a column: \n"))
+    if board[x-1][y-1] == '@':
+        print("Hit")
+    else:
+        print("Miss")
+
+make_guess(player_board)
