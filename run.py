@@ -20,13 +20,7 @@ def print_board(board, name):
         print("|%s|" % ("|".join(row)))
         row_number += 1
 
-player_board = create_board(6)
-create_ships(3,"player", 6,player_board)
-print_board(player_board, "Gray")
-
 def increment_score(type):
-    player_score = 0
-    computer_score = 0
     if type == 'Player':
         player_score += 1
     else:
@@ -42,5 +36,23 @@ def make_guess(board, type):
     else:
         print("Miss")
 
-make_guess(player_board, 'Player')
+def new_game():
+    player_score = 0
+    computer_score = 0
+    print("-" * 35)
+    print("Welcome to Extreme Battleships")
+    name = input("What is your name: \n")
+    print("-" * 35)
+    size = int(input("How big would you like the game board to be: \n"))
+    ship_num = int(input("How many ships would you like each player to have: \n"))
+    print("-" * 35)
 
+    player_board = create_board(size)
+    computer_board = create_board(size)
+    create_ships(ship_num, 'player', size, player_board)
+    create_ships(ship_num, 'computer', size, computer_board)
+    print_board(computer_board, 'Computer')
+    print("-" * 35)
+    print_board(player_board, name)
+
+new_game()
