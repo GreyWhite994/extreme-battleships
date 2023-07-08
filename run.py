@@ -20,21 +20,28 @@ def print_board(board, name):
         print("|%s|" % ("|".join(row)))
         row_number += 1
 
-def increment_score(type):
-    if type == 'Player':
-        player_score += 1
-    else:
-        computer_score +=1
-    print(player_score)
 
 def make_guess(board, type):
     x = int(input("Please enter a row: \n"))
     y = int(input("Please enter a column: \n"))
     if board[x-1][y-1] == '@':
         print("Hit")
-        increment_score(type)
+        board[x-1][y-1] == '*'
+        if type == 'player':
+            player_score += 1
+        else:
+            computer_score +=1
     else:
         print("Miss")
+        board[x-1][y-1] == 'X'
+
+def play_game(player_board, computer_board):
+    turns = 10
+    while turns != 0:
+        make_guess(computer_board, 'player')
+        print_board(computer_board, 'Computer')
+        turns -= 1
+ 
 
 def new_game():
     player_score = 0
@@ -54,5 +61,6 @@ def new_game():
     print_board(computer_board, 'Computer')
     print("-" * 35)
     print_board(player_board, name)
+    play_game(player_board, computer_board)
 
 new_game()
