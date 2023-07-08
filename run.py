@@ -1,5 +1,7 @@
 from random import randint
 
+scores = {"computer":0, "player":0}
+
 def create_board(size):
     board = [["."] * size for i in range(size)]
     return board
@@ -12,6 +14,7 @@ def create_ships(ship_num, type, size, board):
     else:
         for location in range(ship_num):
             ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
+            board[ship_x][ship_y] = '@'
 
 def print_board(board, name):
     print(f"{name}'s Board")
@@ -26,14 +29,13 @@ def make_guess(board, type):
     y = int(input("Please enter a column: \n"))
     if board[x-1][y-1] == '@':
         print("Hit")
-        board[x-1][y-1] == '*'
+        board[x-1][y-1] = '*'
         if type == 'player':
-            player_score += 1
-        else:
-            computer_score +=1
+            scores["player"] += 1
+            print(scores['player'])
     else:
         print("Miss")
-        board[x-1][y-1] == 'X'
+        board[x-1][y-1] = 'X'
 
 def play_game(player_board, computer_board):
     turns = 10
@@ -44,8 +46,8 @@ def play_game(player_board, computer_board):
  
 
 def new_game():
-    player_score = 0
-    computer_score = 0
+    scores["computer"] = 0
+    scores["player"] = 0
     print("-" * 35)
     print("Welcome to Extreme Battleships")
     name = input("What is your name: \n")
