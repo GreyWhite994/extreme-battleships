@@ -29,11 +29,11 @@ def player_guess(computer_board, computer_guess_board, name):
     print(f"{name}'s Guess!")
     x = int(input("Please enter a row: \n"))
     y = int(input("Please enter a column: \n"))
+    print(f"{name} guessed {x},{y}")
     if computer_guess_board[x-1][y-1] == '@':
         print("Hit")
         computer_board[x-1][y-1] = '*'
         scores["player"] += 1
-        print(scores["player"])
     else:
         print("Miss")
         computer_board[x-1][y-1] = 'X'
@@ -42,6 +42,7 @@ def computer_guess(player_board, size):
     print("Computer's Turn")
     x = randint(0, size - 1)
     y = randint(0, size - 1)
+    print(f"Computer guessed {x+1},{y+1}")
     if player_board[x-1][y-1] == '@':
         print("Hit")
         player_board[x-1][y-1] = '*'
@@ -69,10 +70,10 @@ def new_game():
     scores["computer"] = 0
     scores["player"] = 0
     print("-" * 35)
-    print("Welcome to Extreme Battleships")
+    print("Welcome to Extreme Battleships!")
     name = input("What is your name: \n")
     print("-" * 35)
-    size = int(input("How big would you like the game board to be: \n"))
+    size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid): \n"))
     ship_num = int(input("How many ships would you like each player to have: \n"))
     print("-" * 35)
 
