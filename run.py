@@ -25,18 +25,21 @@ def print_board(board, name):
         row_number += 1
 
 
-def player_guess(computer_board, computer_guess_board):
+def player_guess(computer_board, computer_guess_board, name):
+    print(f"{name}'s Guess!")
     x = int(input("Please enter a row: \n"))
     y = int(input("Please enter a column: \n"))
     if computer_guess_board[x-1][y-1] == '@':
         print("Hit")
         computer_board[x-1][y-1] = '*'
         scores["player"] += 1
+        print(scores["player"])
     else:
         print("Miss")
         computer_board[x-1][y-1] = 'X'
 
-def computer_guess(player_board):
+def computer_guess(player_board, size):
+    print("Computer's Turn")
     x = randint(0, size - 1)
     y = randint(0, size - 1)
     if player_board[x-1][y-1] == '@':
@@ -47,12 +50,19 @@ def computer_guess(player_board):
         print("Miss")
         player_board[x-1][y-1] = 'X'
 
-def play_game(player_board, computer_guess_board, computer_board):
-    turns = 10
-    while turns != 0:
-        player_guess(computer_board, computer_guess_board)
+def play_game(player_board, computer_guess_board, computer_board, name, size, ship_num):
+    game_over = False
+    while game_over != True:
+        player_guess(computer_board, computer_guess_board, name)
         print_board(computer_board, 'Computer')
-        turns -= 1
+        computer_guess(player_board, size)
+        print_board(player_board, name)
+        if scores["player"] == ship_num:
+            print(f"{name} wins!")
+            game_over = True
+        elif scores["computer"] == ship_num:
+            print("Computer wins!")
+            game_over = True
  
 
 def new_game():
@@ -74,6 +84,6 @@ def new_game():
     print_board(computer_board, 'Computer')
     print("-" * 35)
     print_board(player_board, name)
-    play_game(player_board, computer_guess_board, computer_board)
+    play_game(player_board, computer_guess_board, computer_board, name, size, ship_num)
 
 new_game()
