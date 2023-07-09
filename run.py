@@ -58,7 +58,7 @@ def play_game(player_board, computer_guess_board, computer_board, name, size, sh
         print_board(computer_board, 'Computer')
         computer_guess(player_board, size)
         print_board(player_board, name)
-        print(f"After this round the scores are {name}:{scores['player']} and computer:{scores['computer']}")
+        print(f"After this round the scores are {name}:{scores['player']} and Computer:{scores['computer']}")
         if scores["player"] == ship_num:
             print(f"{name} wins!")
             game_over = True
@@ -74,7 +74,14 @@ def new_game():
     print("Welcome to Extreme Battleships!")
     name = input("What is your name: \n")
     print("-" * 35)
-    size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid): \n"))
+    while True:
+        try:
+            size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid): \n"))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        if size >=3 and size <=10:
+            break
     ship_num = int(input("How many ships would you like each player to have: \n"))
     print("-" * 35)
 
