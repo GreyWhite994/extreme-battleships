@@ -58,6 +58,7 @@ def play_game(player_board, computer_guess_board, computer_board, name, size, sh
         print_board(computer_board, 'Computer')
         computer_guess(player_board, size)
         print_board(player_board, name)
+        print(f"After this round the scores are {name}:{scores['player']} and computer:{scores['computer']}")
         if scores["player"] == ship_num:
             print(f"{name} wins!")
             game_over = True
