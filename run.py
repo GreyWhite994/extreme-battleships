@@ -16,6 +16,7 @@ def create_ships(ship_num, type, size, board):
             ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
             board[ship_x][ship_y] = '@'
 
+
 def print_board(board, name):
     print(f"{name}'s Board")
     row_number = 1
@@ -24,23 +25,32 @@ def print_board(board, name):
         row_number += 1
 
 
-def make_guess(board, type):
+def player_guess(computer_board, computer_guess_board):
     x = int(input("Please enter a row: \n"))
     y = int(input("Please enter a column: \n"))
-    if board[x-1][y-1] == '@':
+    if computer_guess_board[x-1][y-1] == '@':
         print("Hit")
-        board[x-1][y-1] = '*'
-        if type == 'player':
-            scores["player"] += 1
-            print(scores['player'])
+        computer_board[x-1][y-1] = '*'
+        scores["player"] += 1
     else:
         print("Miss")
-        board[x-1][y-1] = 'X'
+        computer_board[x-1][y-1] = 'X'
 
-def play_game(player_board, computer_board):
+def computer_guess(player_board):
+    x = randint(0, size - 1)
+    y = randint(0, size - 1)
+    if player_board[x-1][y-1] == '@':
+        print("Hit")
+        player_board[x-1][y-1] = '*'
+        scores["computer"] += 1
+    else:
+        print("Miss")
+        player_board[x-1][y-1] = 'X'
+
+def play_game(player_board, computer_guess_board, computer_board):
     turns = 10
     while turns != 0:
-        make_guess(computer_board, 'player')
+        player_guess(computer_board, computer_guess_board)
         print_board(computer_board, 'Computer')
         turns -= 1
  
@@ -58,11 +68,12 @@ def new_game():
 
     player_board = create_board(size)
     computer_board = create_board(size)
+    computer_guess_board = create_board(size)
     create_ships(ship_num, 'player', size, player_board)
-    create_ships(ship_num, 'computer', size, computer_board)
+    create_ships(ship_num, 'guess_board', size, computer_guess_board)
     print_board(computer_board, 'Computer')
     print("-" * 35)
     print_board(player_board, name)
-    play_game(player_board, computer_board)
+    play_game(player_board, computer_guess_board, computer_board)
 
 new_game()
