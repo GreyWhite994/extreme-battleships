@@ -6,15 +6,10 @@ def create_board(size):
     board = [["."] * size for i in range(size)]
     return board
 
-def create_ships(ship_num, type, size, board):
-    if type == "player":
-        for location in range(ship_num):
-            ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
-            board[ship_x][ship_y] = '@'
-    else:
-        for location in range(ship_num):
-            ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
-            board[ship_x][ship_y] = '@'
+def create_ships(ship_num, size, board):
+    for location in range(ship_num):
+        ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
+        board[ship_x][ship_y] = '@'
 
 
 def print_board(board, name):
@@ -95,8 +90,8 @@ def new_game():
     player_board = create_board(size)
     computer_board = create_board(size)
     computer_guess_board = create_board(size)
-    create_ships(ship_num, 'player', size, player_board)
-    create_ships(ship_num, 'guess_board', size, computer_guess_board)
+    create_ships(ship_num, size, player_board)
+    create_ships(ship_num, size, computer_guess_board)
     print_board(computer_board, 'Computer')
     print("-" * 35)
     print_board(player_board, name)
