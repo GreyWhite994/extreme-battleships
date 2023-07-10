@@ -76,13 +76,20 @@ def new_game():
     print("-" * 35)
     while True:
         try:
-            size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid): \n"))
+            size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid), minimum is 3 and the limit is 10: \n"))
         except ValueError:
             print("Please enter a number")
             continue
         if size >=3 and size <=10:
             break
-    ship_num = int(input("How many ships would you like each player to have: \n"))
+    while True:
+        try: 
+            ship_num = int(input("How many ships would you like each player to have (Minimum is 3 and the limit is 8): \n"))
+        except ValueError:
+            print("Please enter a number")
+            continue 
+        if ship_num >=3 and ship_num <=8:
+            break
     print("-" * 35)
 
     player_board = create_board(size)
