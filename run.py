@@ -20,10 +20,28 @@ def print_board(board, name):
         row_number += 1
 
 
-def player_guess(computer_board, computer_guess_board, name):
+def player_guess(computer_board, computer_guess_board, name, size):
     print(f"{name}'s Guess!")
-    x = int(input("Please enter a row: \n"))
-    y = int(input("Please enter a column: \n"))
+    while True:
+        try:
+            x = int(input("Please enter a row: \n"))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        if x >= 1 and x <= size:
+            break
+        else:
+            print(f"You must enter a number between 1 and {size}")
+    while True:
+        try:
+            y = int(input("Please enter a column: \n"))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        if y >= 1 and y <= size:
+            break
+        else:
+            print(f"You must enter a number between 1 and {size}")
     print(f"{name} guessed {x},{y}")
     if computer_guess_board[x-1][y-1] == '@':
         print("Hit")
@@ -49,7 +67,7 @@ def computer_guess(player_board, size):
 def play_game(player_board, computer_guess_board, computer_board, name, size, ship_num):
     game_over = False
     while game_over != True:
-        player_guess(computer_board, computer_guess_board, name)
+        player_guess(computer_board, computer_guess_board, name, size)
         print_board(computer_board, 'Computer')
         computer_guess(player_board, size)
         print_board(player_board, name)
@@ -77,6 +95,8 @@ def new_game():
             continue
         if size >=3 and size <=10:
             break
+        else:
+            print("Number must be between 3 and 10!")
     while True:
         try: 
             ship_num = int(input("How many ships would you like each player to have (Minimum is 3 and the limit is 8): \n"))
@@ -85,6 +105,8 @@ def new_game():
             continue 
         if ship_num >=3 and ship_num <=8:
             break
+        else:
+            print("Number must be between 3 and 8!")
     print("-" * 35)
 
     player_board = create_board(size)
