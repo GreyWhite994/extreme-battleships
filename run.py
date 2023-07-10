@@ -26,7 +26,7 @@ def player_guess(computer_board, computer_guess_board, name, size):
         try:
             x = int(input("Please enter a row: \n"))
         except ValueError:
-            print("Please enter a number")
+            print("Please enter a number!")
             continue
         if x >= 1 and x <= size:
             break
@@ -36,7 +36,7 @@ def player_guess(computer_board, computer_guess_board, name, size):
         try:
             y = int(input("Please enter a column: \n"))
         except ValueError:
-            print("Please enter a number")
+            print("Please enter a number!")
             continue
         if y >= 1 and y <= size:
             break
@@ -85,7 +85,12 @@ def new_game():
     scores["player"] = 0
     print("-" * 35)
     print("Welcome to Extreme Battleships!")
-    name = input("What is your name: \n")
+    while True:
+        name = input("What is your name: \n")
+        if name.isalpha():
+            break
+        else:
+            print("Invalid name. Please enter a name using only letters!")
     print("-" * 35)
     while True:
         try:
