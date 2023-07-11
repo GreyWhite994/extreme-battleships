@@ -7,10 +7,15 @@ def create_board(size):
     return board
 
 def create_ships(ship_num, size, board):
+    ship_locations = []
     for location in range(ship_num):
-        ship_x, ship_y = randint(0, size - 1), randint(0, size - 1)
-        board[ship_x][ship_y] = '@'
-
+            while True:
+                ship_x,ship_y = randint(0, size - 1), randint(0, size - 1)
+                if ((ship_x,ship_y)) not in ship_locations:
+                    board[ship_x][ship_y] = '@'
+                    ship_locations.append((ship_x,ship_y))
+                    print(ship_locations)
+                    break
 
 def print_board(board, name):
     print(f"{name}'s Board")
