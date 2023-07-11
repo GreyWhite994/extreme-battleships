@@ -3,6 +3,7 @@ from random import randint
 scores = {"computer":0, "player":0}
 
 def create_board(size):
+    """Creates a board by using the size parameter. Returns board."""
     board = [["."] * size for i in range(size)]
     return board
 
