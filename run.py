@@ -61,9 +61,9 @@ def computer_guess(player_board, size):
     x = randint(0, size - 1)
     y = randint(0, size - 1)
     print(f"Computer guessed {x+1},{y+1}")
-    if player_board[x-1][y-1] == '@':
+    if player_board[x][y] == '@':
         print("Hit")
-        player_board[x-1][y-1] = '*'
+        player_board[x][y] = '*'
         scores["computer"] += 1
     else:
         print("Miss")
