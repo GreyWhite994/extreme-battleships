@@ -8,6 +8,9 @@ def create_board(size):
     return board
 
 def create_ships(ship_num, size, board):
+    """Creates ships by taking ship_num, size and board parameters. Prevents duplicate ship locations
+    by comparing to locations in ship_locations list. If ship_x, ship_y not in ship_locations a ship will be created and 
+    the location used will be appended to ship_locations."""
     ship_locations = []
     for location in range(ship_num):
             while True:
@@ -15,7 +18,6 @@ def create_ships(ship_num, size, board):
                 if ((ship_x,ship_y)) not in ship_locations:
                     board[ship_x][ship_y] = '@'
                     ship_locations.append((ship_x,ship_y))
-                    print(ship_locations)
                     break
 
 def print_board(board, name):
