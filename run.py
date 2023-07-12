@@ -27,7 +27,7 @@ def print_board(board, name):
 
 
 def player_guess(computer_board, computer_guess_board, name, size):
-    print(f"{name}'s Guess!")
+    print(f"{name}'s turn")
     while True:
         while True:
             try:
@@ -63,7 +63,7 @@ def player_guess(computer_board, computer_guess_board, name, size):
         computer_board[x-1][y-1] = 'X'
 
 def computer_guess(player_board, size):
-    print("Computer's Turn")
+    print("Computer's turn")
     x = randint(0, size - 1)
     y = randint(0, size - 1)
     while True:
@@ -85,23 +85,34 @@ def play_game(player_board, computer_guess_board, computer_board, name, size, sh
     game_over = False
     while game_over != True:
         player_guess(computer_board, computer_guess_board, name, size)
-        print_board(computer_board, 'Computer')
+        print("-" * 35)
         computer_guess(player_board, size)
-        print_board(player_board, name)
+        print("-" * 35)
         print(f"After this round the scores are {name}:{scores['player']} and Computer:{scores['computer']}")
+        print("-" * 35)
+        print_board(computer_board, 'Computer')
+        print("-" * 35)
+        print_board(player_board, name)
+        print("-" * 35)
         if scores["player"] == ship_num:
             print(f"{name} wins!")
             game_over = True
         elif scores["computer"] == ship_num:
             print("Computer wins!")
             game_over = True
- 
+        keep_playing = input("Enter any key to continue or n to quit:")
+        if keep_playing == 'n':
+            game_over = True
+            new_game()
+        
 
 def new_game():
     scores["computer"] = 0
     scores["player"] = 0
     print("-" * 35)
     print("Welcome to Extreme Battleships!")
+    print("Top left corner is row: 1, col: 1")
+    print("-" * 35)
     while True:
         name = input("What is your name: \n")
         if name.isalpha():
@@ -119,6 +130,7 @@ def new_game():
             break
         else:
             print("Number must be between 3 and 10!")
+    print("-" * 35)
     while True:
         try: 
             ship_num = int(input("How many ships would you like each player to have (Minimum is 3 and the limit is 8): \n"))
@@ -139,6 +151,7 @@ def new_game():
     print_board(computer_board, 'Computer')
     print("-" * 35)
     print_board(player_board, name)
+    print("-" * 35)
     play_game(player_board, computer_guess_board, computer_board, name, size, ship_num)
 
 new_game()
