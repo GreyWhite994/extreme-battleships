@@ -102,10 +102,11 @@ def play_game(player_board, computer_guess_board, computer_board, name, size, sh
         elif scores["computer"] == ship_num:
             print("Computer wins!")
             game_over = True
-        keep_playing = input("Enter any key to continue or n to quit:")
-        if keep_playing == 'n':
-            game_over = True
-            new_game()
+        else:
+            keep_playing = input("Enter any key to continue or n to quit:")
+            if keep_playing == 'n':
+                game_over = True
+                new_game()
         
 
 def new_game():
