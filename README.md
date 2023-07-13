@@ -53,18 +53,6 @@ e.g 5x5 board with 4 ships.
     - A guess off the size of the board cannot be made.
     - Row/Column guesses must be an integer.
 
-e.g Below a guess made outside board size.
-
-![guess_off_grid](assets/images/grid_size_validation.png)
-
-e.g Non-integer inputted for a guess.
-
-![non-integer_guess](assets/images/number_validation.png)
-
-e.g Entering a guess that has already been made.
-
-![repeat_guess](assets/images/already_guessed.png)
-
 - Data maintained in class instances
 
 - Player can stop the game after each round.
@@ -83,3 +71,29 @@ e.g Entering a guess that has already been made.
 I used a Board class as data model. The game created two instances of this class to create the player board and the computer board. The Board class stores the board size, the number of ships, player type and name. Also, the ship locations and guesses for that board.
 
 The class also has a number of methods to play the game. This includes a print_board method to print out current board. A create_ships method to add ships to the board. Also, a guess method to validate guesses and add them to the list of guesses already made on that board.
+
+## Testing
+
+- I have tested the project by doing the following:
+    - Passed the code successfully through a PEP8 linter and found no significant issues.
+    - Given invalid inputs e.g off-grid guesses, non-integers entered for co-ordinates and guesses made more than once.
+    - Tested in local terminal and Heroku terminal.
+    - Entered non-alphabetical characters for input of name.
+
+e.g Below a guess made outside board size.
+
+![guess_off_grid](assets/images/grid_size_validation.png)
+
+e.g Non-integer inputted for a guess.
+
+![non-integer_guess](assets/images/number_validation.png)
+
+e.g Entering a guess that has already been made.
+
+![repeat_guess](assets/images/already_guessed.png)
+
+e.g Non-alphabetical input entered for name.
+
+![name_validation](assets/images/name_validation.png)
+
+## Bugs
