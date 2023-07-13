@@ -3,14 +3,14 @@ from random import randint
 scores = {"computer":0, "player":0}
 
 def create_board(size):
-    """Creates a board by using the size parameter. Returns board."""
+    """Creates a board by using the size parameter. Returns board"""
     board = [["."] * size for i in range(size)]
     return board
 
 def create_ships(ship_num, size, board):
     """Creates ships by taking ship_num, size and board parameters. Prevents duplicate ship locations
     by comparing to locations in ship_locations list. If ship_x, ship_y not in ship_locations a ship will be created and 
-    the location used will be appended to ship_locations."""
+    the location used will be appended to ship_locations"""
     ship_locations = []
     for location in range(ship_num):
             while True:
@@ -21,6 +21,7 @@ def create_ships(ship_num, size, board):
                     break
 
 def print_board(board, name):
+    """Prints board by taking board and name parameters"""
     print(f"{name}'s Board")
     row_number = 1
     for row in board:
@@ -29,6 +30,10 @@ def print_board(board, name):
 
 
 def player_guess(computer_board, computer_guess_board, name, size):
+    """Takes input from user in the form of x and y variables to guess computer ship location.
+    Validates x and y so as to disallow non-integers and guesses which are off grid or repeat guesses.
+    If x/y corresponds to a ship location player score is incremented and an asterisk is printed in that location.
+    Else it is a miss and an X is printed to the location"""
     print(f"{name}'s turn")
     while True:
         while True:
