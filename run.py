@@ -4,7 +4,8 @@ scores = {"computer":0, "player":0}
 
 
 class Board:
-    """Main Board class. Sets up the board and has methods to create ships, print the board and validate guesses."""
+    """Main Board class. Sets up the board and has methods to create ships, print the board and validate guesses.
+    Inspiration for this code taken from 'Portfolio project 3 scope' https://youtu.be/4sqtzZQpDJE"""
     def __init__(self, size, name, ship_num, type):
         self.size=size
         self.name=name
@@ -159,7 +160,7 @@ def new_game():
     print("-" * 35)
     while True:
         try:
-            size = int(input("How big would you like the game board (e.g if 6 is entered the board will be a 6x6 grid), minimum is 3 and the limit is 10: \n"))
+            size = int(input("How big would you like the game board\n(e.g if 6 is entered the board will be a 6x6 grid), minimum is 3 and the limit is 10: \n"))
         except ValueError:
             print("Please enter a number")
             continue
@@ -170,7 +171,7 @@ def new_game():
     print("-" * 35)
     while True:
         try: 
-            ship_num = int(input("How many ships would you like each board to have(Minimum is 3 and the limit is 8): \n"))
+            ship_num = int(input("How many ships would you like each board to have\n(Minimum is 3 and the limit is 8): \n"))
         except ValueError:
             print("Please enter a number")
             continue 
