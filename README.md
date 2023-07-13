@@ -77,3 +77,9 @@ e.g Entering a guess that has already been made.
 - Allow player to choose ships of different sizes.
 - Have ships larger than 1x1 square.
 - Allow player to set turn/time limit if desired.
+
+## Data Model
+
+I used a Board class as data model. The game created two instances of this class to create the player board and the computer board. The Board class stores the board size, the number of ships, player type and name. Also, the ship locations and guesses for that board.
+
+The class also has a number of methods to play the game. This includes a print_board method to print out current board. A create_ships method to add ships to the board. Also, a guess method to validate guesses and add them to the list of guesses already made on that board.
