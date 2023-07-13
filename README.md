@@ -70,3 +70,10 @@ e.g Entering a guess that has already been made.
 - Player can stop the game after each round.
 
 ![quit_game](assets/images/quit_game.png)
+
+## Future Features
+
+- Allow player to choose ship positions.
+- Allow player to choose ships of different sizes.
+- Have ships larger than 1x1 square.
+- Allow player to set turn/time limit if desired.
