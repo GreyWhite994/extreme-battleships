@@ -29,40 +29,47 @@ class Board:
             row_number += 1 
 
     def guess(self, x, y):
-        self.guesses.append((x, y))
-        self.board[x][y] = "X"
-
-        if (x,y) in self.ship_locations:
-            self.board[x][y] = '*'
-            return 'Hit'
+        if ((x, y)) in self.guesses:
+            return "duplicate"
         else:
-            return 'Miss'
+            self.guesses.append((x, y))
+            self.board[x][y] = "X"
+            if (x,y) in self.ship_locations:
+                self.board[x][y] = '*'
+                return 'Hit'
+            else:
+                return 'Miss'
 
 
 def player_guess(computer_board, name, size):
     print(f"{name}'s turn")
     while True:
-        try:
-            x = int(input("Please enter a row: \n"))
-        except ValueError:
-            print("Please enter a number!")
-            continue
-        if x >= 1 and x <= size:
+        while True:
+            try:
+                x = int(input("Please enter a row: \n"))
+            except ValueError:
+                print("Please enter a number!")
+                continue
+            if x >= 1 and x <= size:
+                break
+            else:
+                print(f"You must enter a number between 1 and {size}")
+        while True:
+            try:
+                y = int(input("Please enter a column: \n"))
+            except ValueError:
+                print("Please enter a number!")
+                continue
+            if y >= 1 and y <= size:
+                break
+            else:
+                print(f"You must enter a number between 1 and {size}")
+        result = Board.guess(computer_board, x-1, y-1)
+        if result != 'duplicate':
             break
         else:
-            print(f"You must enter a number between 1 and {size}")
-    while True:
-        try:
-            y = int(input("Please enter a column: \n"))
-        except ValueError:
-            print("Please enter a number!")
-            continue
-        if y >= 1 and y <= size:
-            break
-        else:
-            print(f"You must enter a number between 1 and {size}")
+            print("That location has already been guessed!")
     print(f"{name} guessed {x},{y}")
-    result = Board.guess(computer_board, x-1, y-1)
     if result == 'Hit':
         print("Hit")
         scores["player"] += 1
@@ -72,10 +79,13 @@ def player_guess(computer_board, name, size):
 
 def computer_guess(player_board, size):
     print("Computer's turn")
-    x = randint(0, size - 1)
-    y = randint(0, size - 1)
+    while true:
+        x = randint(0, size - 1)
+        y = randint(0, size - 1)
+        result = Board.guess(player_board, x, y)
+        if result != 'duplicate':
+            break
     print(f"Computer guessed {x+1},{y+1}")
-    result = Board.guess(player_board, x, y)
     if result == 'Hit':
         print("Hit")
         scores["computer"] += 1
