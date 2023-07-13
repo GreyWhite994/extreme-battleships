@@ -8,7 +8,7 @@ class Board:
     def __init__(self, size, name, ship_num, type):
         self.size=size
         self.name=name
-        self.board=[["."] * size for i in range(size)]
+        self.board=[[" "] * size for i in range(size)]
         self.ship_num=ship_num
         self.type=type
         self.guesses = []
@@ -123,7 +123,10 @@ def play_game(player_board, computer_board, name, size, ship_num):
         print("-" * 35)
         Board.print_board(player_board)
         print("-" * 35)
-        if scores["player"] == ship_num:
+        if scores["player"] == ship_num and scores["computer"] == ship_num:
+            print("It is a draw!")
+            game_over = True
+        elif scores["player"] == ship_num:
             print(f"{name} wins!")
             game_over = True
         elif scores["computer"] == ship_num:
