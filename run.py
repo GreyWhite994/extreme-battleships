@@ -39,7 +39,7 @@ class Board:
             row_number += 1 
 
     def guess(self, x, y):
-        """Takes x,y parameters, if x,y already in guesses duplicate will be returned.
+        """Takes x,y parameters, if x,y already in guesses list duplicate will be returned.
         Else guess is either a hit or miss and location appended to guesses. Board will be updated with X or * if it is a hit/miss"""
         if ((x, y)) in self.guesses:
             return "duplicate"
@@ -92,7 +92,7 @@ def player_guess(computer_board, name, size):
 
 
 def computer_guess(player_board, size):
-    """x,y are random integers between 0 and board size-1.If the guess is a duplicate a new value will be assigned to x,y.
+    """x,y are random integers between 0 and board size-1. If the guess is a duplicate a new value will be assigned to x,y.
     Else, computer score will be incremented if it is a hit"""
     print("Computer's turn")
     while True:
@@ -110,7 +110,8 @@ def computer_guess(player_board, size):
 
 def play_game(player_board, computer_board, name, size, ship_num):
     """Game will continue until game_over is true. The player and computer take guesses in rounds. The scores are printed after each round.
-    The updated boards with X/* are printed after each round. Player can quit after each round by entering n when prompted."""
+    The updated boards with X/* are printed after each round. Player can quit after each round by entering n when prompted. Game is over
+    when either or both players hit all the opposing ships"""
     game_over = False
     while game_over != True:
         player_guess(computer_board, name, size)
@@ -158,7 +159,7 @@ def new_game():
     print("-" * 35)
     while True:
         try:
-            size = int(input("How big would you like the game board to be(e.g if 6 is entered the board will be a 6x6 grid), minimum is 3 and the limit is 10: \n"))
+            size = int(input("How big would you like the game board (e.g if 6 is entered the board will be a 6x6 grid), minimum is 3 and the limit is 10: \n"))
         except ValueError:
             print("Please enter a number")
             continue
@@ -169,7 +170,7 @@ def new_game():
     print("-" * 35)
     while True:
         try: 
-            ship_num = int(input("How many ships would you like each player to have (Minimum is 3 and the limit is 8): \n"))
+            ship_num = int(input("How many ships would you like each board to have(Minimum is 3 and the limit is 8): \n"))
         except ValueError:
             print("Please enter a number")
             continue 
