@@ -32,7 +32,7 @@ def print_board(board, name):
 def player_guess(computer_board, computer_guess_board, name, size):
     """Takes input from user in the form of x and y variables to guess computer ship location.
     Validates x and y so as to disallow non-integers and guesses which are off grid or repeat guesses.
-    If x/y corresponds to a ship location player score is incremented and an asterisk is printed in that location.
+    If x/y corresponds to a ship location player score is incremented and an * is printed in that location.
     Else it is a miss and an X is printed to the location"""
     print(f"{name}'s turn")
     while True:
@@ -70,6 +70,9 @@ def player_guess(computer_board, computer_guess_board, name, size):
         computer_board[x-1][y-1] = 'X'
 
 def computer_guess(player_board, size):
+    """Assigns a random integer to x,y varibales between 0 and the size of the grid - 1 to ensure
+    the guess will not go off grid. Validates x,y by not allowing guess if location corresponds to */X.
+    If a ship at x,y location computer score will be incremented and * will replace @. Else, X will replace @."""
     print("Computer's turn")
     x = randint(0, size - 1)
     y = randint(0, size - 1)
