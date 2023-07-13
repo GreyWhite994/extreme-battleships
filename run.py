@@ -4,6 +4,7 @@ scores = {"computer":0, "player":0}
 
 
 class Board:
+    """Main Board class. Sets up the board and has methods to create ships, print the board and validate guesses."""
     def __init__(self, size, name, ship_num, type):
         self.size=size
         self.name=name
@@ -14,6 +15,9 @@ class Board:
         self.ship_locations = []
     
     def create_ships(self):
+        """Prevents duplicate ship locations by comparing to locations in ship_locations list. 
+        If ship_x, ship_y not in ship_locations a ship will be created and the location 
+        used will be appended to ship_locations"""
         for location in range(self.ship_num):
             while True:
                 ship_x,ship_y = randint(0, self.size - 1), randint(0, self.size - 1)
@@ -27,6 +31,7 @@ class Board:
                         break
 
     def print_board(self):
+        """Prints the board with the appropriate name"""
         print(f"{self.name}'s Board")
         row_number = 1
         for row in self.board:
@@ -34,6 +39,8 @@ class Board:
             row_number += 1 
 
     def guess(self, x, y):
+        """Takes x,y parameters, if x,y already in guesses duplicate will be returned.
+        Else guess is either a hit or miss and location appended to guesses. Board will be updated with X or * if it is a hit/miss"""
         if ((x, y)) in self.guesses:
             return "duplicate"
         else:
@@ -47,6 +54,8 @@ class Board:
 
 
 def player_guess(computer_board, name, size):
+    """Player inputs row,column. Must be between 1 and the board size. If the guess is not a duplicate, the guess will be printed
+    and score incremented if it is a hit."""
     print(f"{name}'s turn")
     while True:
         while True:
@@ -83,6 +92,8 @@ def player_guess(computer_board, name, size):
 
 
 def computer_guess(player_board, size):
+    """x,y are random integers between 0 and board size-1.If the guess is a duplicate a new value will be assigned to x,y.
+    Else, computer score will be incremented if it is a hit"""
     print("Computer's turn")
     while True:
         x = randint(0, size - 1)
@@ -98,6 +109,8 @@ def computer_guess(player_board, size):
         print("Miss")
 
 def play_game(player_board, computer_board, name, size, ship_num):
+    """Game will continue until game_over is true. The player and computer take guesses in rounds. The scores are printed after each round.
+    The updated boards with X/* are printed after each round. Player can quit after each round by entering n when prompted."""
     game_over = False
     while game_over != True:
         player_guess(computer_board, name, size)
@@ -117,13 +130,16 @@ def play_game(player_board, computer_board, name, size, ship_num):
             print("Computer wins!")
             game_over = True
         else:
-            keep_playing = input("Enter any key to continue or n to quit:")
+            keep_playing = input("Enter any key to continue or n to quit:").lower()
             if keep_playing == 'n':
                 game_over = True
                 new_game()
         
 
 def new_game():
+    """Sets up a new game by resetting scores to 0. Gets input from player to get their name and preferred board size and ship number.
+    Validation in place to prevent improper input. Creates instances of player_board and computer_board. Prints each board and calls the
+    play_game function"""
     scores["computer"] = 0
     scores["player"] = 0
     print("-" * 35)
