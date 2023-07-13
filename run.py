@@ -4,11 +4,12 @@ scores = {"computer":0, "player":0}
 
 
 class Board:
-    def __init__(self, size, name, ship_num):
+    def __init__(self, size, name, ship_num, type):
         self.size=size
         self.name=name
         self.board=[["."] * size for i in range(size)]
         self.ship_num=ship_num
+        self.type=type
         self.guesses = []
         self.ship_locations = []
     
@@ -17,9 +18,13 @@ class Board:
             while True:
                 ship_x,ship_y = randint(0, self.size - 1), randint(0, self.size - 1)
                 if ((ship_x,ship_y)) not in self.ship_locations:
-                    self.board[ship_x][ship_y] = '@'
-                    self.ship_locations.append((ship_x,ship_y))
-                    break
+                    if self.type=='player':
+                        self.board[ship_x][ship_y] = '@'
+                        self.ship_locations.append((ship_x,ship_y))
+                        break
+                    else:
+                        self.ship_locations.append((ship_x,ship_y))
+                        break
 
     def print_board(self):
         print(f"{self.name}'s Board")
@@ -79,7 +84,7 @@ def player_guess(computer_board, name, size):
 
 def computer_guess(player_board, size):
     print("Computer's turn")
-    while true:
+    while True:
         x = randint(0, size - 1)
         y = randint(0, size - 1)
         result = Board.guess(player_board, x, y)
@@ -155,9 +160,8 @@ def new_game():
             print("Number must be between 3 and 8!")
     print("-" * 35)
 
-    player_board = Board(size,name,ship_num)
-    computer_board = Board(size,"Computer",ship_num)
-    computer_guess_board = Board(size,"Computer",ship_num)
+    player_board = Board(size,name,ship_num,'player')
+    computer_board = Board(size,"Computer",ship_num,'computer')
     Board.create_ships(player_board)
     Board.create_ships(computer_board)
     Board.print_board(computer_board)
