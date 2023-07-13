@@ -75,10 +75,11 @@ The class also has a number of methods to play the game. This includes a print_b
 ## Testing
 
 - I have tested the project by doing the following:
-    - Passed the code successfully through a PEP8 linter and found no significant issues.
+    - Passed the code successfully by running pylint run.py and found no significant issues.
     - Given invalid inputs e.g off-grid guesses, non-integers entered for co-ordinates and guesses made more than once.
     - Tested in local terminal and Heroku terminal.
     - Entered non-alphabetical characters for input of name.
+    - Tested in event of a draw would code execute properly.
 
 e.g Below a guess made outside board size.
 
@@ -96,4 +97,32 @@ e.g Non-alphabetical input entered for name.
 
 ![name_validation](assets/images/name_validation.png)
 
+e.g Draw
+
+![Draw](assets/images/draw.png)
+
 ## Bugs
+
+- Solved Bugs
+    - Guesses were incorrectly showing on boards e.g Player would guess (1,3) but the board would update at (2,4). This was due
+    to list index starting at 0. Thus, this was fixed by minusing 1 from the x,y variables before they were passed to the guess function.
+    - If both the player and computer destroyed the last of eachother's ships on the same turn it would incorrectly state the player was the winner due to how the if statement was structured. This was solved as stated above by first checking for the draw condition.
+
+- Remaining Bugs
+    - No remaining bugs
+
+## Validator Testing
+- Ran pylint run.py. No significant errors found.
+
+## Deployment
+- Deployment steps
+    - Fork/clone this repository
+    - Create a new Heroku app
+    - Set the buildbacks to **Python** and **NodeJS** in that order
+    - Link the Heroku app to the repository
+    - Click Deploy
+
+## Credits
+- Code institute for the deployment terminal
+- Wikipedia for Battleships game material
+- Inspiration for how to structure the Board class (https://www.youtube.com/watch?v=4sqtzZQpDJE)
