@@ -112,7 +112,7 @@ e.g Draw
     - No remaining bugs
 
 ## Validator Testing
-- Ran pylint run.py. No significant errors found.
+- Used Pylint tool. No significant errors found.
 
 ## Deployment
 - Deployment steps
